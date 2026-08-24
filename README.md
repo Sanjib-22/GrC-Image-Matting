@@ -1,6 +1,6 @@
 # GrC-Based Image Matting for Mammogram Mass Segmentation
 
-*This project is a part of a Research Internship at LNMIIT Jaipur under Dr. Dhruba Jyoti Kalita sir.*
+*This project is a part of a Research Internship at LNMIIT Jaipur under the guidance of Dr. Dhruba Jyoti Kalita sir.*
 
 Applying a granular-computing (GrC) image matting technique — originally designed for general foreground/background separation - to mammogram mass segmentation on **MIAS** and **CBIS-DDSM**.
 
