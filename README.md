@@ -9,6 +9,8 @@ Applying a granular-computing (GrC) image matting technique — originally desig
 
 This is an application of the base method - it was not originally designed for medical imaging, so there is no existing published benchmark for this exact technique on either dataset. Both phases are implemented end-to-end and evaluated per class, with the debugging process itself documented as part of the results (see [Notable Finding](#notable-finding-cbis-ddsm) below).
 
+📄 [Full Progress Report (PDF)](docs/Project_report.pdf) — MIAS and CBIS-DDSM phases, detailed methodology, debugging stages, and results.
+
 ![CBIS-DDSM pipeline stages, one row per class](Report_fig/fig21_ddsm_alpha_grid.png)
 
 ---
@@ -101,6 +103,8 @@ Three independent classifiers (nearest-centroid, RBF-SVM, XGBoost) converged to 
 
 ```
 GrC-Image_Matting/
+├─ docs/
+│  ├─ Project_report.pdf
 ├─ DDSM/
 │  ├─ Codebase (CBIS-DDSM)/
 │  │  ├─ Notebook_1.ipynb
