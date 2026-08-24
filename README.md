@@ -122,6 +122,7 @@ GrC-Image_Matting/
 │     └─ config.json
 ├─ Report_fig/
 ├─ .gitignore
+├─ LICENSE
 ├─ Output_Figures.ipynb
 ├─ README.md
 └─ requirements.txt
@@ -144,9 +145,11 @@ pip install -r requirements.txt
 ```
 
 Built for Google Colab with Google Drive mounted as persistent storage — each notebook writes its outputs to Drive and reloads its inputs from Drive at the start, rather than depending on a prior notebook's live session, so any single notebook can be rerun standalone once its dependencies exist on Drive.
-**Dataset (Kaggle)**
-- **MIAS** - 
-- **CBIS-DDSM** -
+
+**Datasets Used:**
+- [MIAS Dataset](https://www.kaggle.com/datasets/kmader/mias-mammography)
+- [CBIS-DDSM Dataset](https://www.kaggle.com/datasets/awsaf49/cbis-ddsm-breast-cancer-image-dataset)
+  
 **Run order:**
 - **MIAS** - `01` → `02` → `03`, in order.
 - **CBIS-DDSM** - `01` → `02` → `03` → `04` → `05` → `06`, in order.
@@ -159,5 +162,5 @@ MIT License
 
 ## Author
 
--[@Sanjib Das](https://github.com/Sanjib-22)
--[@Pragyan Thapa](https://github.com/pragyanthapa)
+- [Sanjib Das](https://github.com/Sanjib-22)
+- [Pragyan Thapa](https://github.com/pragyanthapa)
