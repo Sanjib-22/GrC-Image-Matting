@@ -1,0 +1,16 @@
+{
+  "K": 16,
+  "patch_size": 5,
+  "source": "LBPW patches from train lesions only",
+  "n_patches": 277098,
+  "selection": "aggregate positive mass-bg diff across all train images",
+  "k_candidates": [
+    6,
+    8,
+    10,
+    12,
+    14,
+    16
+  ],
+  "value_mean": 0.3728642165660858
+}

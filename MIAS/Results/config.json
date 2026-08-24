@@ -1,0 +1,71 @@
+{
+  "SEED": 42,
+  "DRIVE_ROOT": "/content/drive/MyDrive/mias_grc_project",
+  "DATASET_DIR": "/content/mias_dataset",
+  "TARGET_CLASSES": [
+    "CIRC",
+    "SPIC",
+    "MISC",
+    "NORM"
+  ],
+  "MASS_CLASSES": [
+    "CIRC",
+    "SPIC",
+    "MISC"
+  ],
+  "NORM_SAMPLE_SIZE": 50,
+  "EXPECTED_TOTAL": 322,
+  "CLAHE_CLIP_LIMIT": 2.0,
+  "CLAHE_TILE_FINE": [
+    8,
+    8
+  ],
+  "CLAHE_TILE_COARSE": [
+    16,
+    16
+  ],
+  "ROI_MARGIN_FACTOR": 0.3,
+  "ROI_MARGIN_MIN_PX": 20,
+  "ROI_MAX_RADIUS": 150,
+  "TRIMAP_MIN_INNER_R": 10,
+  "TRIMAP_MIN_RING_WIDTH": 5,
+  "LAMBDA_VAL": 5.0,
+  "PATCH_SIZES": [
+    3,
+    5,
+    7
+  ],
+  "PATCH_SINGLE": 5,
+  "K_CANDIDATES": [
+    6,
+    8,
+    10
+  ],
+  "HISTOGRAM_WINDOW": 7,
+  "HISTOGRAM_STRIDE": 1,
+  "SVM_C_VALUES": [
+    0.1,
+    1,
+    10
+  ],
+  "SVM_GAMMA_VALUES": [
+    "scale",
+    "auto"
+  ],
+  "HYBRID_GAMMA": 0.9,
+  "MAX_NODES": 2500,
+  "LAMBDA_PROPAGATION": 100.0,
+  "ALPHA_THRESHOLD": 0.5,
+  "HD95_PERCENTILE": 95,
+  "OUTPUTS_DIR": "/content/drive/MyDrive/mias_grc_project/outputs",
+  "PREPROCESSED_DIR": "/content/drive/MyDrive/mias_grc_project/preprocessed",
+  "TRIMAPS_DIR": "/content/drive/MyDrive/mias_grc_project/trimaps",
+  "ALPHA_MAPS_DIR": "/content/drive/MyDrive/mias_grc_project/alpha_maps",
+  "MODELS_DIR": "/content/drive/MyDrive/mias_grc_project/models",
+  "RESULTS_DIR": "/content/drive/MyDrive/mias_grc_project/results",
+  "LOGS_DIR": "/content/drive/MyDrive/mias_grc_project/logs",
+  "FIGURES_DIR": "/content/drive/MyDrive/mias_grc_project/figures",
+  "INFO_PATH": "/content/mias_dataset/Info.txt",
+  "IMAGES_DIR": "/content/mias_dataset/all-mias",
+  "ALPHAS_DIR": "/content/drive/MyDrive/mias_grc_project/alpha_maps"
+}

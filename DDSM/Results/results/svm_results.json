@@ -1,0 +1,10 @@
+{
+  "best_params": {
+    "C": 10,
+    "gamma": "auto"
+  },
+  "best_cv_balanced_acc": 0.551633526955987,
+  "test_acc": 0.5593144023533649,
+  "n_train": 20000,
+  "n_test": 33314
+}

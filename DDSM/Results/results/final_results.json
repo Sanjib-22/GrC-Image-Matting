@@ -1,0 +1,111 @@
+{
+  "project": "GrC-Based Image Matting on CBIS-DDSM",
+  "base_paper": "Hu, Pang, Shi (2016), Knowledge-Based Systems 102, 51-63",
+  "dataset": {
+    "name": "CBIS-DDSM (awsaf49 mirror)",
+    "images": 537,
+    "lesions": 270,
+    "classes": {
+      "CIRC": 177,
+      "SPIC": 180,
+      "MISC": 180
+    }
+  },
+  "config": {
+    "seed": 42,
+    "patch_sizes": [
+      3,
+      5,
+      7
+    ],
+    "K_templates": 16,
+    "hybrid_gamma": 0.9,
+    "roi_max_size": 256
+  },
+  "scope_vs_mias": {
+    "no_norm_class": "CBIS-DDSM curated release has abnormality cases only",
+    "real_mask_gt": "GT is the radiologist mask, not a circle; removes the circular-GT penalty that weakened SPIC in MIAS",
+    "multi_view": "CC and MLO kept as separate images; split grouped by lesion"
+  },
+  "svm": {
+    "best_params": {
+      "C": 10,
+      "gamma": "auto"
+    },
+    "best_cv_balanced_acc": 0.551633526955987,
+    "test_acc": 0.5593144023533649,
+    "n_train": 20000,
+    "n_test": 33314
+  },
+  "per_class": [
+    {
+      "class": "CIRC",
+      "n": 177,
+      "dice": 0.6735656221892371,
+      "dice_std": 0.1554543998883999,
+      "sensitivity": 0.8686071276411392,
+      "specificity": 0.9853181243005226,
+      "hd95": 3.27753275527923,
+      "alpha_mae": 0.08068288591201023
+    },
+    {
+      "class": "SPIC",
+      "n": 180,
+      "dice": 0.7614864781010369,
+      "dice_std": 0.15184897758735807,
+      "sensitivity": 0.8347099498688604,
+      "specificity": 0.987665660423382,
+      "hd95": 4.192778858058213,
+      "alpha_mae": 0.08547399942245748
+    },
+    {
+      "class": "MISC",
+      "n": 180,
+      "dice": 0.7145728855567102,
+      "dice_std": 0.1536431179221663,
+      "sensitivity": 0.8454672368065764,
+      "specificity": 0.9865616373407543,
+      "hd95": 3.8573569717860985,
+      "alpha_mae": 0.0835702794086602
+    }
+  ],
+  "ablation": [
+    {
+      "key": "baseline_3x3_manual",
+      "n": 30,
+      "dice": 0.7047797018450797,
+      "sensitivity": 0.8834381324427247,
+      "specificity": 0.9849254960151356,
+      "hd95": 3.509472321005225,
+      "alpha_mae": 0.030115833692252635
+    },
+    {
+      "key": "mod2_5x5_single_scale",
+      "n": 30,
+      "dice": 0.669227875934725,
+      "sensitivity": 0.8400617341839128,
+      "specificity": 0.9853106284998854,
+      "hd95": 3.688258413724357,
+      "alpha_mae": 0.030624808464199304
+    },
+    {
+      "key": "mod1234_no_hybrid",
+      "n": 30,
+      "dice": 0.6680947540497989,
+      "sensitivity": 0.8398024724823188,
+      "specificity": 0.9853271511566555,
+      "hd95": 3.6795454034563155,
+      "alpha_mae": 0.03072531558573246
+    },
+    {
+      "key": "full_method",
+      "n": 30,
+      "dice": 0.6703153917888578,
+      "sensitivity": 0.849297895773223,
+      "specificity": 0.9846752609947794,
+      "hd95": 3.653721965562002,
+      "alpha_mae": 0.08433095241586368
+    }
+  ],
+  "n_alpha_maps": 537
+}

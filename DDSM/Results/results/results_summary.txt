@@ -1,0 +1,31 @@
+GrC IMAGE MATTING ON CBIS-DDSM - RESULTS SUMMARY
+====================================================
+
+Images evaluated : 537
+Lesions          : 270
+Templates (K)    : 16
+SVM test acc     : 0.5593
+
+Per-class results (no NORM class this phase)
+----------------------------------------------------
+class   n   dice  dice_std  sensitivity  specificity   hd95  alpha_mae
+ CIRC 177 0.6736    0.1555       0.8686       0.9853 3.2775     0.0807
+ SPIC 180 0.7615    0.1518       0.8347       0.9877 4.1928     0.0855
+ MISC 180 0.7146    0.1536       0.8455       0.9866 3.8574     0.0836
+
+Ablation
+----------------------------------------------------
+                  key  n   dice  sensitivity  specificity   hd95  alpha_mae
+  baseline_3x3_manual 30 0.7048       0.8834       0.9849 3.5095     0.0301
+mod2_5x5_single_scale 30 0.6692       0.8401       0.9853 3.6883     0.0306
+    mod1234_no_hybrid 30 0.6681       0.8398       0.9853 3.6795     0.0307
+          full_method 30 0.6703       0.8493       0.9847 3.6537     0.0843
+
+Scope notes
+----------------------------------------------------
+1. No NORM class: CBIS-DDSM curated release has abnormality cases only.
+2. GT is the real radiologist mask, not a circle. SPIC is no longer
+   penalised by circular GT (the main MIAS limitation for SPIC).
+3. CC and MLO kept separate; train/test split grouped by lesion_key.
+4. Ablation on 10 images/class; Layer 5 on 2500-node grid.
+5. Layer 4 uses sklearn RBF-SVM in place of the paper's PSVM.

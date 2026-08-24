@@ -1,0 +1,127 @@
+{
+  "project": "GrC-Based Image Matting on MIAS",
+  "base_paper": "Hu, Pang, Shi (2016), Knowledge-Based Systems 102, 51-63",
+  "dataset": {
+    "name": "MIAS",
+    "cases": 105,
+    "classes": {
+      "CIRC": 22,
+      "SPIC": 19,
+      "MISC": 14,
+      "NORM": 50
+    }
+  },
+  "config": {
+    "seed": 42,
+    "patch_sizes": [
+      3,
+      5,
+      7
+    ],
+    "K_templates": 10,
+    "histogram_window": 7,
+    "hybrid_gamma": 0.9,
+    "max_nodes": 2500,
+    "alpha_threshold": 0.5
+  },
+  "layer2_fix": {
+    "issue": "three-way threshold matcher ignored the template value in the medium band, so 6 of 8 templates were unused",
+    "fix": "signed-weight matching per paper Section 5.2 and Eq. 37",
+    "before_unused": 6,
+    "after_unused": 0
+  },
+  "svm": {
+    "best_params": {
+      "C": 10,
+      "gamma": "auto"
+    },
+    "best_cv_acc": 0.6422473634906664,
+    "train_acc": 0.65265,
+    "test_acc": 0.6279411764705882,
+    "n_train": 20000,
+    "n_test": 10200,
+    "n_train_images": 38,
+    "n_test_images": 17
+  },
+  "per_class": [
+    {
+      "class": "CIRC",
+      "n": 22,
+      "dice": 0.8416144972182238,
+      "dice_std": 0.0540349417896135,
+      "sensitivity": 0.7464386074802558,
+      "specificity": 0.9703923821884688,
+      "hd95": 15.556163817528022,
+      "alpha_mae": 0.1761626614765687
+    },
+    {
+      "class": "MISC",
+      "n": 14,
+      "dice": 0.8180504288965272,
+      "dice_std": 0.05386566677372,
+      "sensitivity": 0.7062228679091882,
+      "specificity": 0.9924339919328036,
+      "hd95": 14.52815893480412,
+      "alpha_mae": 0.1778748620833669
+    },
+    {
+      "class": "NORM",
+      "n": 50,
+      "dice": NaN,
+      "dice_std": NaN,
+      "sensitivity": NaN,
+      "specificity": 1.0,
+      "hd95": NaN,
+      "alpha_mae": 0.0561701670661568
+    },
+    {
+      "class": "SPIC",
+      "n": 19,
+      "dice": 0.8099371800559899,
+      "dice_std": 0.052577644357162,
+      "sensitivity": 0.7018604525423316,
+      "specificity": 0.9749384291237144,
+      "hd95": 17.631524078799114,
+      "alpha_mae": 0.1875899300763481
+    }
+  ],
+  "ablation": [
+    {
+      "key": "baseline_3x3_manual",
+      "n": 32,
+      "dice": 0.80721653533567,
+      "sensitivity": 0.6940823174869525,
+      "specificity": 0.9831554238052056,
+      "hd95": 15.77661051011608,
+      "alpha_mae": 0.1199080378282815
+    },
+    {
+      "key": "mod2_5x5_single_scale",
+      "n": 32,
+      "dice": 0.811424213129229,
+      "sensitivity": 0.7029318586203908,
+      "specificity": 0.9833397172706896,
+      "hd95": 16.505610695232406,
+      "alpha_mae": 0.1184811205603182
+    },
+    {
+      "key": "mod1234_no_hybrid",
+      "n": 32,
+      "dice": 0.8110162178856567,
+      "sensitivity": 0.7025507231427373,
+      "specificity": 0.9832584699603232,
+      "hd95": 16.48980037705774,
+      "alpha_mae": 0.1184224027674645
+    },
+    {
+      "key": "full_method",
+      "n": 32,
+      "dice": 0.8142156518233765,
+      "sensitivity": 0.707826057176128,
+      "specificity": 0.98367783022497,
+      "hd95": 16.307881156154497,
+      "alpha_mae": 0.1517050601541996
+    }
+  ],
+  "n_alpha_maps": 105
+}

@@ -1,0 +1,38 @@
+GrC IMAGE MATTING ON MIAS - RESULTS SUMMARY
+====================================================
+
+Cases evaluated : 105
+Templates (K)   : 10
+SVM test acc    : 0.6279
+SVM params      : {'C': 10, 'gamma': 'auto'}
+
+Layer 2 fix
+----------------------------------------------------
+Before: 6 of 8 templates unused, histogram had 2 distinct values.
+After : 0 of 10 templates unused.
+
+Per-class results
+----------------------------------------------------
+class  n   dice  dice_std  sensitivity  specificity    hd95  alpha_mae
+ CIRC 22 0.8416    0.0540       0.7464       0.9704 15.5562     0.1762
+ MISC 14 0.8181    0.0539       0.7062       0.9924 14.5282     0.1779
+ NORM 50    NaN       NaN          NaN       1.0000     NaN     0.0562
+ SPIC 19 0.8099    0.0526       0.7019       0.9749 17.6315     0.1876
+
+Ablation
+----------------------------------------------------
+                  key  n   dice  sensitivity  specificity    hd95  alpha_mae
+mod2_5x5_single_scale 32 0.8114       0.7029       0.9833 16.5056     0.1185
+    mod1234_no_hybrid 32 0.8110       0.7026       0.9833 16.4898     0.1184
+          full_method 32 0.8142       0.7078       0.9837 16.3079     0.1517
+
+Notes
+----------------------------------------------------
+1. Ground truth is a circle from the MIAS centre and radius annotation.
+   SPIC Dice and HD95 are understated, because spiculations extend past
+   any enclosing circle. SPIC is judged visually as well.
+2. NORM has no mass, so only specificity and false-positive area apply.
+3. Layer 5 solves on a grid capped at 2500 nodes, then resizes.
+   This is a compute compromise on Colab CPU.
+4. The ablation runs on 8 images per class, same reason.
+5. Layer 4 uses an sklearn RBF-SVM in place of the paper's PSVM.

@@ -1,0 +1,72 @@
+{
+  "SEED": 42,
+  "DRIVE_ROOT": "/content/drive/MyDrive/cbis_ddsm_grc_project",
+  "DATASET_DIR": "/content/cbis_ddsm",
+  "KAGGLE_SLUG": "awsaf49/cbis-ddsm-breast-cancer-image-dataset",
+  "MARGIN_TO_CLASS": {
+    "CIRCUMSCRIBED": "CIRC",
+    "SPICULATED": "SPIC",
+    "ILL_DEFINED": "MISC"
+  },
+  "TARGET_CLASSES": [
+    "CIRC",
+    "SPIC",
+    "MISC"
+  ],
+  "LESIONS_PER_CLASS": 90,
+  "CLAHE_CLIP_LIMIT": 2.0,
+  "CLAHE_TILE_FINE": [
+    8,
+    8
+  ],
+  "CLAHE_TILE_COARSE": [
+    16,
+    16
+  ],
+  "ROI_MAX_SIZE": 256,
+  "TRIMAP_ERODE_ITERS": 6,
+  "TRIMAP_DILATE_ITERS": 10,
+  "LAMBDA_VAL": 5.0,
+  "PATCH_SIZES": [
+    3,
+    5,
+    7
+  ],
+  "PATCH_SINGLE": 5,
+  "K_CANDIDATES": [
+    6,
+    8,
+    10,
+    12,
+    14,
+    16
+  ],
+  "HISTOGRAM_WINDOW": 7,
+  "HISTOGRAM_STRIDE": 1,
+  "SVM_C_VALUES": [
+    0.1,
+    1,
+    10
+  ],
+  "SVM_GAMMA_VALUES": [
+    "scale",
+    "auto"
+  ],
+  "HYBRID_GAMMA": 0.9,
+  "MAX_NODES": 2500,
+  "LAMBDA_PROPAGATION": 100.0,
+  "ALPHA_THRESHOLD": 0.5,
+  "HD95_PERCENTILE": 95,
+  "OUTPUTS_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/outputs",
+  "PREPROCESSED_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/preprocessed",
+  "TRIMAPS_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/trimaps",
+  "ALPHAS_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/alpha_maps",
+  "MODELS_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/models",
+  "RESULTS_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/results",
+  "LOGS_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/logs",
+  "FIGURES_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/figures",
+  "ALPHA_MAPS_DIR": "/content/drive/MyDrive/cbis_ddsm_grc_project/alpha_maps",
+  "CSV_DIR": "/content/cbis_ddsm/csv",
+  "JPEG_DIR": "/content/cbis_ddsm/jpeg",
+  "DICOM_INFO_PATH": "/content/cbis_ddsm/csv/dicom_info.csv"
+}

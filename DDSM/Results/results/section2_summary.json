@@ -1,0 +1,19 @@
+{
+  "total_mass_rows": 1696,
+  "resolved_rows": 1593,
+  "columns_swapped": false,
+  "pure_class_rows": 1082,
+  "discordant_lesions": 32,
+  "selected_lesions": 270,
+  "selected_images": 540,
+  "images_per_class": {
+    "SPIC": 180,
+    "MISC": 180,
+    "CIRC": 180
+  },
+  "lesions_per_class": {
+    "CIRC": 90,
+    "MISC": 90,
+    "SPIC": 90
+  }
+}

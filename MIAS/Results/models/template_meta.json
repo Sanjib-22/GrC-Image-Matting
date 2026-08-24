@@ -1,0 +1,18 @@
+{
+  "K": 10,
+  "patch_size": 5,
+  "source": "LBPW patches from train images only",
+  "n_patches": 37634,
+  "k_candidates": [
+    6,
+    8,
+    10
+  ],
+  "selection_metric": "mean |mass-bg| score difference using the signed matcher",
+  "value_range": [
+    0.07891714572906494,
+    0.47154492139816284
+  ],
+  "value_mean": 0.2756505012512207,
+  "pct_medium_band": 40.0
+}
