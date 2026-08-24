@@ -133,7 +133,7 @@ GrC-Image_Matting/
 ## Key Implementation Notes
 
 - Layer 4 uses an sklearn RBF-SVM in place of the base paper's PSVM, for both datasets.
-- CBIS-DDSM's train/test split is grouped by **lesion**, not image — many lesions have both a CC and MLO view, which must stay together to avoid leakage. MIAS has no equivalent multi-view structure.
+- CBIS-DDSM's train/test split is grouped by **lesion**, not image - many lesions have both a CC and MLO view, which must stay together to avoid leakage. MIAS has no equivalent multi-view structure.
 - All metrics are reported **per class**, never as a single pooled average.
 
 ---
@@ -144,7 +144,7 @@ GrC-Image_Matting/
 pip install -r requirements.txt
 ```
 
-Built for Google Colab with Google Drive mounted as persistent storage — each notebook writes its outputs to Drive and reloads its inputs from Drive at the start, rather than depending on a prior notebook's live session, so any single notebook can be rerun standalone once its dependencies exist on Drive.
+Built for Google Colab with Google Drive mounted as persistent storage - each notebook writes its outputs to Drive and reloads its inputs from Drive at the start, rather than depending on a prior notebook's live session, so any single notebook can be rerun standalone once its dependencies exist on Drive.
 
 **Datasets Used:**
 - [MIAS Dataset](https://www.kaggle.com/datasets/kmader/mias-mammography)
