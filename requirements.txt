@@ -9,3 +9,4 @@ joblib
 tqdm
 xgboost
 kaggle
+pymupdf

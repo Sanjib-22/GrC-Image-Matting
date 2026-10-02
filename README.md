@@ -2,7 +2,7 @@
 
 *This project is a part of a Research Internship at LNMIIT Jaipur under the guidance of Dr. Dhruba Jyoti Kalita sir.*
 
-Applying a granular-computing (GrC) image matting technique — originally designed for general foreground/background separation - to mammogram mass segmentation on **MIAS** and **CBIS-DDSM**.
+Applying a granular-computing (GrC) image matting technique - originally designed for general foreground/background separation - to mammogram mass segmentation on **MIAS** and **CBIS-DDSM**.
 
 > [!NOTE]
 > Base method: Hu, H., Pang, L., Shi, Z. (2016). *Image matting in the perception granular deep learning.* Knowledge-Based Systems, 102, 51–63.
@@ -15,7 +15,7 @@ This is an application of the base method - it was not originally designed for m
 
 ---
 
-## Table 1 — Summary
+## Table 1 - Summary
 
 | Properties | MIAS | CBIS-DDSM |
 |---|---|---|
@@ -29,14 +29,14 @@ This is an application of the base method - it was not originally designed for m
 ### Architecture (5 layers, shared across both datasets)
 
 ```
-Layer 1  Multi-scale CLAHE + texture encoding (LIPW/LBPW, 3x3/5x5/7x7)
-Layer 2  Signed template matching against K-Means texture templates
-Layer 3  Sliding-window histogram of Layer 2 match scores
-Layer 4  SVM classifier — per-pixel mass probability
-Layer 5  Matting-Laplacian alpha propagation (hybrid: 90% texture / 10% intensity)
+Layer 1  Multi-scale CLAHE + texture encoding (LIPW/LBPW, 3×3/5×5/7×7)
+Layer 2  K-Means-learned texture templates + continuous signed template matching
+Layer 3  Normalized local response pooling of Layer 2 template scores
+Layer 4  Texture + local intensity features → RBF-SVM → texture-derived mass probability
+Layer 5  Hybrid alpha initialization (90% texture / 10% intensity) + Matting-Laplacian refinement
 ```
 
-Five core modifications are applied on top of the base paper's method: multi-scale CLAHE, a single-scale baseline for ablation, data-driven K-Means templates, multi-scale Layer 1, and the hybrid alpha blend.
+Five core modifications are applied on top of the base paper's method: multi-scale CLAHE, multi-scale texture encoding, data-driven K-Means templates, local intensity features, and the hybrid alpha blend.
 
 ---
 
@@ -86,16 +86,16 @@ The best-performing arm flips between datasets — see [Notable Finding](#notabl
 
 ## Notable Finding (CBIS-DDSM)
 
-The base method's texture features (LBPW, K-Means templates) carry **no real signal** on CBIS-DDSM at the tested patch scale - confirmed directly:
+The base method's texture features (LIPW/LBPW, K-Means templates) carry little discriminative signal on CBIS-DDSM at the tested patch scale — confirmed directly:
 
-- Raw local texture variance, mass vs. background: ratio **0.998** (i.e., no difference)
-- Raw pixel intensity, mass vs. background: consistent **+2.6% to +3.0%** difference across all three classes
+- Train-only texture response difference, mass vs. background: +0.000001
+- Train-only local intensity difference, mass vs. background: +0.0242, indicating a consistent intensity separation
 
-Three independent classifiers (nearest-centroid, RBF-SVM, XGBoost) converged to the same ~53–56% accuracy band regardless of training set size - ruling out both "not enough data" and "wrong classifier" as explanations. The fix was adding an intensity-derived feature directly into Layer 4's input, which the original architecture only used as a 10% blend at the very end of Layer 5. 
+The diagnostic motivated adding a local intensity-derived feature directly into Layer 4's input. In the original architecture, intensity contributes only through the 10% intensity component of the final hybrid alpha initialization in Layer 5.
 
-**Consequence:** the ablation study's best-performing arm on CBIS-DDSM is the *simplest* one (`baseline_3x3_manual`), not the full method - because Modifications 1–4 are all texture-focused enhancements, and texture doesn't carry signal on this dataset. This is the opposite of MIAS's result, and is consistent with the diagnostic above.
+**Consequence:** the CBIS-DDSM ablation does not show the same pattern as MIAS: the (`baseline 3×3 manual`) configuration achieves the highest Dice (0.7048) among the tested ablation arms, while the full method achieves 0.6703. This is consistent with the weak texture signal observed in the train-only diagnostic.
 
-**Open question, not yet resolved:** whether this texture-signal absence is a genuine property of the tissue at this patch scale, or an artifact of CBIS-DDSM's JPEG-compressed source images (MIAS's source is lossless PGM - see Table 1). Testing against the original DICOM source (via TCIA) would settle this but hasn't been attempted.
+**Open question, not yet resolved:** whether the weak texture signal is an inherent property of the tissue at this patch scale or is influenced by the characteristics of the CBIS-DDSM image source. Testing against the original DICOM source (via TCIA) would settle this but hasn't been attempted.
 
 ---
 
@@ -124,7 +124,7 @@ GrC-Image_Matting/
 │     ├─ models/
 │     ├─ results/
 │     └─ config.json
-├─ Report_fig/
+├─ Report_figures/
 ├─ .gitignore
 ├─ LICENSE
 ├─ Output_Figures.ipynb
@@ -138,7 +138,7 @@ GrC-Image_Matting/
 
 - Layer 4 uses an sklearn RBF-SVM in place of the base paper's PSVM, for both datasets.
 - CBIS-DDSM's train/test split is grouped by **lesion**, not image - many lesions have both a CC and MLO view, which must stay together to avoid leakage. MIAS has no equivalent multi-view structure.
-- All metrics are reported **per class**, never as a single pooled average.
+- All segmentation metrics are computed **per image and per class**, then macro-averaged across images rather than pooled at the pixel level.
 
 ---
 
