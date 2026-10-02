@@ -11,7 +11,7 @@ This is an application of the base method - it was not originally designed for m
 
 📄 [Full Progress Report (PDF)](docs/Project_report.pdf) — MIAS and CBIS-DDSM phases, detailed methodology, debugging stages, and results.
 
-![CBIS-DDSM pipeline stages, one row per class](Report_fig/fig21_ddsm_alpha_grid.png)
+![CBIS-DDSM pipeline stages, one row per class](Report_figures/fig08_ddsm_gt_prediction_grid.png)
 
 ---
 
